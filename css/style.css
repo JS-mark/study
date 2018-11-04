@@ -1,0 +1,31 @@
+.box {
+  margin: 50% auto;
+  width: 500px;
+  height: 500px;
+  border: 1px solid #ccc;
+  position: relative;
+}
+.box :not(:first-child) {
+  display: none;
+}
+.box :not(:last-child) {
+  background-color: yellow;
+}
+.child {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 50px #feee73;
+  border-radius: 50%;
+  margin: 10px;
+}
+.child1 {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  /* box-shadow: 0 0 5px #000; */
+  /* border-radius: 50%; */
+  /* margin: 10px; */
+  border: 1px solid #ccc;
+  background: #fff;
+}
