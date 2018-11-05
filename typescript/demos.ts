@@ -55,9 +55,18 @@ let mui = {
 }
 mui.say()
 mui.sayStr('qqqqqqqqqqqqq')
-let qq: number = 1
+// let qq: number = 0
+// setInterval(() => {
+// 	qq++
+// 	mui.sayStr('qqqqqqqqqqqqq' + qq)
+// }, 1000)
 
-setInterval(() => {
-	qq++
-	mui.sayStr('qqqqqqqqqqqqq' + qq)
-}, 100)
+function* calculator(input: number) {
+	var doubleThat = yield 2 * (input / 2) // next第一次暂停，value 值为10
+	var another = yield doubleThat + 2 // 第二次暂停,value值为12
+	return input * doubleThat * another
+}
+const calc = calculator(10)
+
+console.log(calc.next())
+console.log(calc.next(10))
