@@ -65,3 +65,4 @@ function* calculator(input) {
 const calc = calculator(10);
 console.log(calc.next());
 console.log(calc.next(10));
+// sss
