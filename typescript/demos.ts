@@ -72,3 +72,4 @@ console.log(calc.next())
 console.log(calc.next(10))
 // sss
 // ceshissss
+// sdsdsadsad
