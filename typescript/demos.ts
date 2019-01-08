@@ -1,7 +1,7 @@
 // string类型
-let stringType: string = 'seven'
+let stringType: string = "seven"
 // any类型
-let anyType: any = 'hello'
+let anyType: any = "hello"
 // 定义整型变量
 let numberType: number = 18
 let a: number = 178.5
@@ -12,11 +12,11 @@ console.log(typeof list[1])
 // 定义枚举类型
 enum REN {
 	nan = 111,
-	nv = '1111',
-	yao = 'd'
+	nv = "1111",
+	yao = "d"
 }
 //
-let anyThing: any = 'hello'
+let anyThing: any = "hello"
 // 定义多个类型
 let num_str: number | string | Array<number>
 console.log((num_str = [11, 22, 33]))
@@ -25,10 +25,10 @@ const arr: number[] = [1, 2, 3]
 let arr1: Array<number> = [1, 1, 2222]
 // 定义元组
 let arr2: [string, number, boolean]
-arr2 = ['1', 2, true] // typescript 定义值时会做类型检测
+arr2 = ["1", 2, true] // typescript 定义值时会做类型检测
 // 定义函数，指定函数参数类型
 let test = function(params: string) {
-	return params + 'fucking'
+	return params + "fucking"
 }
 // 定义void类型
 let test1: null = null
@@ -42,34 +42,53 @@ console.log(arr)
 console.log(arr1)
 console.log(typeof arr2[0])
 console.log(test1)
-console.log(test('ssssss'))
+console.log(test("ssssss"))
 console.log(booleanType)
 
 let mui = {
 	say() {
-		console.log('测试。。。')
+		console.log("测试。。。")
 	},
 	sayStr(str: string) {
 		console.log(str)
 	}
 }
 mui.say()
-mui.sayStr('qqqqqqqqqqqqq')
+mui.sayStr("qqqqqqqqqqqqq")
 // let qq: number = 0
 // setInterval(() => {
 // 	qq++
 // 	mui.sayStr('qqqqqqqqqqqqq' + qq)
 // }, 1000)
 
-function* calculator(input: number) {
-	var doubleThat = yield 2 * (input / 2) // next第一次暂停，value 值为10
-	var another = yield doubleThat + 2 // 第二次暂停,value值为12
-	return input * doubleThat * another
-}
-const calc = calculator(10)
+// function* calculator(input: number) {
+// 	var doubleThat = yield 2 * (input / 2) // next第一次暂停，value 值为10
+// 	var another = yield doubleThat + 2 // 第二次暂停,value值为12
+// 	return input * doubleThat * another
+// }
+// const calc = calculator(10)
 
-console.log(calc.next())
-console.log(calc.next(10))
-// sss
-// ceshissss
-// dsdsad
+// console.log(calc.next())
+// console.log(calc.next(10))
+
+
+// proxy也就是代理操作
+let validator = {
+	set: function(obj: any, prop: any, value: any) {
+		if (prop === "age") {
+			if (!Number.isInteger(value)) {
+				throw new TypeError("The age is not an integer")
+			}
+			if (value > 200) {
+				throw new RangeError("The age seems invalid")
+			}
+		}
+		console.log(obj, prop, value)
+		obj[prop] = obj[prop] + 100
+		return true
+	}
+}
+
+let person = new Proxy({ age: 1 }, validator)
+person.age = 12
+console.log(person.age)

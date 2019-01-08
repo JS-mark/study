@@ -1,8 +1,8 @@
 "use strict";
 // string类型
-let stringType = 'seven';
+let stringType = "seven";
 // any类型
-let anyType = 'hello';
+let anyType = "hello";
 // 定义整型变量
 let numberType = 18;
 let a = 178.5;
@@ -17,7 +17,7 @@ var REN;
     REN["yao"] = "d";
 })(REN || (REN = {}));
 //
-let anyThing = 'hello';
+let anyThing = "hello";
 // 定义多个类型
 let num_str;
 console.log((num_str = [11, 22, 33]));
@@ -25,10 +25,10 @@ const arr = [1, 2, 3];
 let arr1 = [1, 1, 2222];
 // 定义元组
 let arr2;
-arr2 = ['1', 2, true]; // typescript 定义值时会做类型检测
+arr2 = ["1", 2, true]; // typescript 定义值时会做类型检测
 // 定义函数，指定函数参数类型
 let test = function (params) {
-    return params + 'fucking';
+    return params + "fucking";
 };
 // 定义void类型
 let test1 = null;
@@ -40,29 +40,47 @@ console.log(arr);
 console.log(arr1);
 console.log(typeof arr2[0]);
 console.log(test1);
-console.log(test('ssssss'));
+console.log(test("ssssss"));
 console.log(booleanType);
 let mui = {
     say() {
-        console.log('测试。。。');
+        console.log("测试。。。");
     },
     sayStr(str) {
         console.log(str);
     }
 };
 mui.say();
-mui.sayStr('qqqqqqqqqqqqq');
+mui.sayStr("qqqqqqqqqqqqq");
 // let qq: number = 0
 // setInterval(() => {
 // 	qq++
 // 	mui.sayStr('qqqqqqqqqqqqq' + qq)
 // }, 1000)
-function* calculator(input) {
-    var doubleThat = yield 2 * (input / 2); // next第一次暂停，value 值为10
-    var another = yield doubleThat + 2; // 第二次暂停,value值为12
-    return input * doubleThat * another;
-}
-const calc = calculator(10);
-console.log(calc.next());
-console.log(calc.next(10));
-// sss
+// function* calculator(input: number) {
+// 	var doubleThat = yield 2 * (input / 2) // next第一次暂停，value 值为10
+// 	var another = yield doubleThat + 2 // 第二次暂停,value值为12
+// 	return input * doubleThat * another
+// }
+// const calc = calculator(10)
+// console.log(calc.next())
+// console.log(calc.next(10))
+// proxy也就是代理操作
+let validator = {
+    set: function (obj, prop, value) {
+        if (prop === "age") {
+            if (!Number.isInteger(value)) {
+                throw new TypeError("The age is not an integer");
+            }
+            if (value > 200) {
+                throw new RangeError("The age seems invalid");
+            }
+        }
+        console.log(obj, prop, value);
+        obj[prop] = obj[prop] + 100;
+        return true;
+    }
+};
+let person = new Proxy({ age: 1 }, validator);
+person.age = 12;
+console.log(person.age);
