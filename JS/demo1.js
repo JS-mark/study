@@ -14,3 +14,18 @@ function Book() {
 let a = new Book()
 console.log(a.name)
 a.say()
+
+
+Array.prototype.demo = function() {
+  let arr = [];
+  for(let i = 0; i <= this.length; i++) {
+    if(arr.indexOf(this[i]) === -1) {
+      arr.push(this[i])
+    } else {
+      this.splice(i, 1);
+      i--;
+    }
+  }
+}
+
+let arr = [1, 2, 3, 3, 3, 4, 5, 6];
